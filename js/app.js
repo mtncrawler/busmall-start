@@ -2,21 +2,28 @@
 console.log('js linked');
 
 //create constructor for products
-
 function Product(filename, name){
   this.filename = filename;
   this.votes = 0;
   this.seen = 0;
   this.name = name;
-  // this.clicked = (this.votes/this.seen)*100;
   Product.allProducts.push(this);
 }
 
 //create array to hold all Product objects
 Product.allProducts = [];
 
+//create array to hold index for the 3 products; used to ensure images are not displayed 2x in a row
+var productIndex = [];
+
 //create variable to count total votes
 var totalVotes = 0;
+
+//display total votes counter
+var titleHeader = document.getElementById('titleHeader');
+var voteCounter = document.createElement('h2');
+voteCounter.textContent = `${totalVotes}/25 Votes`;
+titleHeader.appendChild(voteCounter);
 
 //create new product instances for each product img
 //create variables for the 3 products that will be displayed at one time
@@ -41,9 +48,6 @@ new Product('img/usb.gif', 'usb');
 new Product('img/water-can.jpg', 'watercan');
 new Product('img/wine-glass.jpg', 'wineglass');
 
-//create array to hold index for the 3 products; used to ensure images are not displayed 2x in a row
-var productIndex = [];
-
 //create function to randomly generate indexes
 function randIndex() {
   var randIndex = Math.floor(Math.random() * Product.allProducts.length);
@@ -61,12 +65,6 @@ function randIndex() {
   product3 = Product.allProducts[thirdProductIndex];
   displayThreeImg();
 }
-
-//display total votes counter
-var titleHeader = document.getElementById('titleHeader');
-var voteCounter = document.createElement('h2');
-voteCounter.textContent = `${totalVotes}/25 Votes`;
-titleHeader.appendChild(voteCounter);
 
 //create function to check with array to ensure the same products are not shown 2x in a row then display new product images
 //add to counter the number of times product seen
@@ -163,7 +161,6 @@ function displayChart() {
   });
 }
 
-
 //display random initial product images
 randIndex();
 
@@ -194,9 +191,3 @@ img3.addEventListener('click', function() {
   randIndex();
   results();
 });
-
-
-
-
-
-
