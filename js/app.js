@@ -1,6 +1,7 @@
 'use strict';
+console.log('js linked');
 
-//create constructor for goats
+//create constructor for products
 
 function Product(filename, name){
   this.filename = filename;
@@ -51,7 +52,9 @@ function randIndex() {
     var thirdProductIndex = Math.floor(Math.random() * Product.allProducts.length);
 
     //prevents the display of duplicate images
-  } while (randIndex === secondProductIndex || randIndex === thirdProductIndex || secondProductIndex === thirdProductIndex);
+  } while (randIndex === secondProductIndex ||
+    randIndex === thirdProductIndex ||
+    secondProductIndex === thirdProductIndex);
 
   product2 = Product.allProducts[secondProductIndex];
   product3 = Product.allProducts[thirdProductIndex];
@@ -81,31 +84,6 @@ var img1 = document.getElementsByTagName('img')[0];
 var img2 = document.getElementsByTagName('img')[1];
 var img3 = document.getElementsByTagName('img')[2];
 
-//event listeners
-//where to listen? 3 images
-//listen for click
-//do what? add vote
-img1.addEventListener('click', function() {
-  product1.votes++;
-  totalVotes++;
-  randIndex();
-  results();
-});
-
-img2.addEventListener('click', function() {
-  product2.votes++;
-  totalVotes++;
-  randIndex();
-  results();
-});
-
-img3.addEventListener('click', function() {
-  product3.votes++;
-  totalVotes++;
-  randIndex();
-  results();
-});
-
 //display results after 25 votes
 function results() {
   if (totalVotes === 25) {
@@ -121,6 +99,38 @@ function results() {
     }
   }
 }
+
+//display random initial product images
+randIndex();
+
+//event listeners
+//where to listen? 3 images
+//listen for click
+//do what? add vote
+img1.addEventListener('click', function() {
+  product1.votes++;
+  totalVotes++;
+  console.log('Third product selected');
+  randIndex();
+  results();
+});
+
+img2.addEventListener('click', function() {
+  product2.votes++;
+  totalVotes++;
+  console.log('Second product selected');
+  randIndex();
+  results();
+});
+
+img3.addEventListener('click', function() {
+  product3.votes++;
+  totalVotes++;
+  console.log('First product selected');
+  randIndex();
+  results();
+});
+
 
 
 

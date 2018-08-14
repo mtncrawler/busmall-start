@@ -11,6 +11,11 @@ img {
     padding-right: 140px;
   }
 
-  #results {
+img:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+#results {
     float:left;
-  }
+}
