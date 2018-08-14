@@ -22,6 +22,7 @@ var totalVotes = 0;
 //display total votes counter
 var titleHeader = document.getElementById('titleHeader');
 var voteCounter = document.createElement('h2');
+voteCounter.id = 'totalVotes';
 voteCounter.textContent = `${totalVotes}/25 Votes`;
 titleHeader.appendChild(voteCounter);
 

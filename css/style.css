@@ -10,7 +10,7 @@ h1 {
     
 }
 
-#titleHeader h2 {
+.titleHeader h2 {
     text-align: center;
     font-weight: bold;
     font-size: 25px;
@@ -18,15 +18,11 @@ h1 {
     padding-bottom: 40px;
 }
 
-#subtitle h2 {
-    text-align: center;
-    font-weight: bold;
-    font-size: 100px;
-    padding: 12px;
-    padding-bottom: 10px;
+h2#subtitle {
+    text-align:center;
 }
+
 h2 {
-    text-align: center;
     font-weight: bold;
     font-size: 25px;
     padding: 12px; 
@@ -62,4 +58,18 @@ img:hover {
 #myChart {
     padding-left:330px;
     padding-top: 25px;
+}
+
+.navbar a {
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
 }
