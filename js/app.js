@@ -8,11 +8,13 @@ function Product(filename, name){
   this.seen = 0;
   this.name = name;
   Product.allProducts.push(this);
-
 }
 
 //create array to hold all Product objects
 Product.allProducts = [];
+
+//create variable to count total votes
+var totalVotes = 0;
 
 //create new product instances for each product img
 //create variables for the 3 products that will be displayed at one time
@@ -79,26 +81,48 @@ var img1 = document.getElementsByTagName('img')[0];
 var img2 = document.getElementsByTagName('img')[1];
 var img3 = document.getElementsByTagName('img')[2];
 
-
-
 //event listeners
 //where to listen? 3 images
 //listen for click
 //do what? add vote
 img1.addEventListener('click', function() {
   product1.votes++;
+  totalVotes++;
   randIndex();
+  results();
 });
 
 img2.addEventListener('click', function() {
   product2.votes++;
+  totalVotes++;
   randIndex();
+  results();
 });
 
 img3.addEventListener('click', function() {
   product3.votes++;
+  totalVotes++;
   randIndex();
+  results();
 });
+
+//display results after 25 votes
+function results() {
+  if (totalVotes === 25) {
+    var resultsList = document.getElementById('results');
+    var title = document.createElement('h2');
+    title.textContent = 'Results';
+    resultsList.appendChild(title);
+    for (var i = 0; i < Product.allProducts.length; i++) {
+      var results = document.getElementById('results');
+      var votes = document.createElement('li');
+      votes.textContent = `${Product.allProducts[i].votes} votes for the ${Product.allProducts[i].name}`;
+      results.appendChild(votes);
+    }
+  }
+}
+
+
 
 
 
