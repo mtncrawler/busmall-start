@@ -8,6 +8,7 @@ function Product(filename, name){
   this.votes = 0;
   this.seen = 0;
   this.name = name;
+  // this.clicked = (this.votes/this.seen)*100;
   Product.allProducts.push(this);
 }
 
@@ -99,13 +100,23 @@ function results() {
     title.textContent = 'Results';
     resultsList.appendChild(title);
     displayChart();
+    percentClicked();
     //add list items to display votes for each product
     for (var i = 0; i < Product.allProducts.length; i++) {
       var results = document.getElementById('results');
       var votes = document.createElement('li');
-      votes.textContent = `${Product.allProducts[i].votes} votes for the ${Product.allProducts[i].name}`;
+      votes.textContent = `${Product.allProducts[i].votes} votes for the ${Product.allProducts[i].name} with ${clicked[i]}%`;
       results.appendChild(votes);
     }
+  }
+}
+
+//calculate and store percentage clicked
+var clicked = [];
+function percentClicked() {
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    var calcClicked = (Product.allProducts[i].votes)/(Product.allProducts[i].seen);
+    clicked.push(calcClicked.toFixed(2));
   }
 }
 
