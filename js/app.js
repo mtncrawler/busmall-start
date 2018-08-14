@@ -141,15 +141,13 @@ function displayChart() {
         label: '# of Votes',
         data: productVotes, //votes for each product
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          '#2377e6', '#21594f', '#886fea', '#ea34a9', '#a1de38',
+          '#ddbdee', '#a608e3', '#b55e72', '#81ec92', '#197cad',
+          '#bbaf61', '#d2fa0e', '#03f7c1', '#43d1ec', '#8991fd',
+          '#ea9328', '#96ef88', '#8729ec', '#f4bb06', '#7f52e1'
         ],
         borderColor: 'rgb(0,0,0)',
-        borderWidth: 1
+        borderWidth: 1.5
       }]
     },
     options: {
@@ -157,7 +155,7 @@ function displayChart() {
         yAxes: [{
           ticks: {
             beginAtZero:true,
-            suggestedMax: 10
+            suggestedMax: 6
           }
         }]
       }
