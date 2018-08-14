@@ -9,15 +9,17 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-    <header>
+    <header id = "titleHeader">
         <h1>Vote on Your Favorite Product!</h1>
     </header>
-    <ul id = "results">
-        
-    </ul>
+    <ul id = "results"></ul>
     <img src = "img/bag.jpg">
     <img src = "img/banana.jpg">
     <img src = "img/bathroom.jpg">
+    <div class = "chartContainer" style="position: inherit; height:40vh; width:50vw">
+        <canvas id="myChart"></canvas>    
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

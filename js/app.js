@@ -61,8 +61,14 @@ function randIndex() {
   displayThreeImg();
 }
 
+//display total votes counter
+var titleHeader = document.getElementById('titleHeader');
+var voteCounter = document.createElement('h2');
+voteCounter.textContent = `${totalVotes}/25 Votes`;
+titleHeader.appendChild(voteCounter);
+
 //create function to check with array to ensure the same products are not shown 2x in a row then display new product images
-//add to counter to product for the number of times seen
+//add to counter the number of times product seen
 function displayThreeImg() {
   if (productIndex.includes(product1.name) || productIndex.includes(product2.name)|| productIndex.includes(product3.name)) {
     randIndex();
@@ -76,6 +82,7 @@ function displayThreeImg() {
     img1.src = product1.filename;
     img2.src = product2.filename;
     img3.src = product3.filename;
+    voteCounter.textContent = `${totalVotes}/25 Votes`; //update votes counter
   }
 }
 
@@ -91,6 +98,8 @@ function results() {
     var title = document.createElement('h2');
     title.textContent = 'Results';
     resultsList.appendChild(title);
+    displayChart();
+    //add list items to display votes for each product
     for (var i = 0; i < Product.allProducts.length; i++) {
       var results = document.getElementById('results');
       var votes = document.createElement('li');
@@ -99,6 +108,52 @@ function results() {
     }
   }
 }
+
+//function to display chart by filling name and votes array then chartjs
+function displayChart() {
+  //create arrays with product names and votes to build chartjs
+  var productNames = [];
+  var productVotes = [];
+
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    productNames.push(Product.allProducts[i].name);
+    productVotes.push(Product.allProducts[i].votes);
+  }
+
+  //create chartjs to display votes for each product
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: productNames, //name of each product
+      datasets: [{
+        label: '# of Votes',
+        data: productVotes, //votes for each product
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: 'rgb(0,0,0)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true,
+            suggestedMax: 10
+          }
+        }]
+      }
+    }
+  });
+}
+
 
 //display random initial product images
 randIndex();
