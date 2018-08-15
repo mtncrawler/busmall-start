@@ -132,7 +132,7 @@ function displayChart() {
 
   //create chartjs to display votes for each product
   var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: productNames, //name of each product
