@@ -29,18 +29,23 @@ h2 {
 }
 
 body {
-    background-color: #f49b264d;
+    background-color: #f49b2629;
     font-family: 'Titillium Web', sans-serif;
 }
 
 img {
-    max-height: 250px;
-    padding: 50px;
+    max-height: 210px;
+    padding: 28px;
+    border-radius: 20%;
+    border: 3px solid dimgrey;
+    margin: 26px;
+    box-shadow: 2px 2px 21px;
+    background-color: whitesmoke;
   }
 
 div.imageRow {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 
 img:hover {
