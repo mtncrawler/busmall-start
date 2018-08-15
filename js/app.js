@@ -133,13 +133,15 @@ function percentClicked() {
 
 //function to display chart by filling name and votes array then chartjs
 function displayChart() {
-  //create arrays with product names and votes to build chartjs
+  //create arrays with product names, votes, and times seen to build chartjs
   var productNames = [];
   var productVotes = [];
+  var productSeen = [];
 
   for (var i = 0; i < Product.allProducts.length; i++) {
     productNames.push(Product.allProducts[i].name);
     productVotes.push(Product.allProducts[i].votes);
+    productSeen.push(Product.allProducts[i].seen);
   }
 
   //add votes to local storage
@@ -162,10 +164,19 @@ function displayChart() {
         ],
         borderColor: 'rgb(0,0,0)',
         borderWidth: 1.5
+      }, {
+        label: '# times displayed',
+        data: productSeen, //times seen for each product
+        borderColor: '#ffff03',
+        borderWidth: 1.5
       }]
+
     },
     options: {
       scales: {
+        xAxes: [{
+          stacked: true,
+        }],
         yAxes: [{
           ticks: {
             beginAtZero:true,
