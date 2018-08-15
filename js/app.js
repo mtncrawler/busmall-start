@@ -2,7 +2,6 @@
 console.log('js linked');
 
 //create constructor for products
-
 function Product(filename, name){
   this.filename = filename;
   this.votes = 0;
@@ -14,8 +13,18 @@ function Product(filename, name){
 //create array to hold all Product objects
 Product.allProducts = [];
 
+//create array to hold index for the 3 products; used to ensure images are not displayed 2x in a row
+var productIndex = [];
+
 //create variable to count total votes
 var totalVotes = 0;
+
+//display total votes counter
+var titleHeader = document.getElementById('titleHeader');
+var voteCounter = document.createElement('h2');
+voteCounter.id = 'totalVotes';
+voteCounter.textContent = `${totalVotes}/25 Votes`;
+titleHeader.appendChild(voteCounter);
 
 //create new product instances for each product img
 //create variables for the 3 products that will be displayed at one time
@@ -40,9 +49,6 @@ new Product('img/usb.gif', 'usb');
 new Product('img/water-can.jpg', 'watercan');
 new Product('img/wine-glass.jpg', 'wineglass');
 
-//create array to hold index for the 3 products; used to ensure images are not displayed 2x in a row
-var productIndex = [];
-
 //create function to randomly generate indexes
 function randIndex() {
   var randIndex = Math.floor(Math.random() * Product.allProducts.length);
@@ -62,7 +68,7 @@ function randIndex() {
 }
 
 //create function to check with array to ensure the same products are not shown 2x in a row then display new product images
-//add to counter to product for the number of times seen
+//add to counter the number of times product seen
 function displayThreeImg() {
   if (productIndex.includes(product1.name) || productIndex.includes(product2.name)|| productIndex.includes(product3.name)) {
     randIndex();
@@ -76,6 +82,7 @@ function displayThreeImg() {
     img1.src = product1.filename;
     img2.src = product2.filename;
     img3.src = product3.filename;
+    voteCounter.textContent = `${totalVotes}/25 Votes`; //update votes counter
   }
 }
 
@@ -91,13 +98,68 @@ function results() {
     var title = document.createElement('h2');
     title.textContent = 'Results';
     resultsList.appendChild(title);
+    displayChart();
+    percentClicked();
+    //add list items to display votes for each product
     for (var i = 0; i < Product.allProducts.length; i++) {
       var results = document.getElementById('results');
       var votes = document.createElement('li');
-      votes.textContent = `${Product.allProducts[i].votes} votes for the ${Product.allProducts[i].name}`;
+      votes.textContent = `${Product.allProducts[i].votes} votes for the ${Product.allProducts[i].name} with ${clicked[i]}%`;
       results.appendChild(votes);
     }
   }
+}
+
+//calculate and store percentage clicked
+var clicked = [];
+function percentClicked() {
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    var calcClicked = (Product.allProducts[i].votes)/(Product.allProducts[i].seen);
+    clicked.push(calcClicked.toFixed(2));
+  }
+}
+
+//function to display chart by filling name and votes array then chartjs
+function displayChart() {
+  //create arrays with product names and votes to build chartjs
+  var productNames = [];
+  var productVotes = [];
+
+  for (var i = 0; i < Product.allProducts.length; i++) {
+    productNames.push(Product.allProducts[i].name);
+    productVotes.push(Product.allProducts[i].votes);
+  }
+
+  //create chartjs to display votes for each product
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: productNames, //name of each product
+      datasets: [{
+        label: '# of Votes',
+        data: productVotes, //votes for each product
+        backgroundColor: [
+          '#2377e6', '#21594f', '#886fea', '#ea34a9', '#a1de38',
+          '#ddbdee', '#a608e3', '#b55e72', '#81ec92', '#197cad',
+          '#bbaf61', '#d2fa0e', '#03f7c1', '#43d1ec', '#8991fd',
+          '#ea9328', '#96ef88', '#8729ec', '#f4bb06', '#7f52e1'
+        ],
+        borderColor: 'rgb(0,0,0)',
+        borderWidth: 1.5
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true,
+            suggestedMax: 6
+          }
+        }]
+      }
+    }
+  });
 }
 
 //display random initial product images
@@ -130,9 +192,3 @@ img3.addEventListener('click', function() {
   randIndex();
   results();
 });
-
-
-
-
-
-

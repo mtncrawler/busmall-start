@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Products</title>
-    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-    <header>
-        <h1>Vote on Your Favorite Product!</h1>
+    <header id = "titleHeader">
+        <h1>BusMall Focus Group</h1>
+        <h2 id = "subtitle">Vote for your favorite product!</h2>
+        <div class = "navbar">
+            <a href = "">Home</a>
+            <a href = "">Products</a>
+            <a href = "">About</a>
+            <a href = "">Contact</a>
+        </div>
     </header>
-    <ul id = "results">
-        
-    </ul>
+    <ul id = "results"></ul>
     <img src = "img/bag.jpg">
     <img src = "img/banana.jpg">
     <img src = "img/bathroom.jpg">
+    <div class = "chartContainer" style="position: inherit; height:40vh; width:60vw">
+        <canvas id="myChart"></canvas>    
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
