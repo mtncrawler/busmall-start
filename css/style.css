@@ -34,13 +34,14 @@ body {
 }
 
 img {
-    max-width: 250px;
     max-height: 250px;
-    padding: 40px;
-    float:right;
-    padding-top: 100px;
-    padding-right: 140px;
+    padding: 50px;
   }
+
+div.imageRow {
+    text-align: center;
+    padding-top: 20px;
+}
 
 img:hover {
   opacity: .5;

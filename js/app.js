@@ -169,7 +169,7 @@ function displayChart() {
         yAxes: [{
           ticks: {
             beginAtZero:true,
-            suggestedMax: 6
+            suggestedMax: 5
           }
         }]
       }
