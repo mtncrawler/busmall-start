@@ -26,6 +26,7 @@ voteCounter.id = 'totalVotes';
 voteCounter.textContent = `${totalVotes}/25 Votes`;
 titleHeader.appendChild(voteCounter);
 
+//load local storage if available
 var storedProductVotes = JSON.parse(localStorage.getItem('products'));
 if (storedProductVotes) {
   for (var i = 0; i < storedProductVotes.length; i++) {
