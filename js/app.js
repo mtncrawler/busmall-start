@@ -127,7 +127,7 @@ function results() {
 var clicked = [];
 function percentClicked() {
   for (var i = 0; i < Product.allProducts.length; i++) {
-    var calcClicked = (Product.allProducts[i].votes)/(Product.allProducts[i].seen);
+    var calcClicked = ((Product.allProducts[i].votes)/(Product.allProducts[i].seen)*100);
     clicked.push(calcClicked.toFixed(2));
   }
 }
